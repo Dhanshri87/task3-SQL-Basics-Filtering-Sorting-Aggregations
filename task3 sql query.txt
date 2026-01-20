@@ -1,0 +1,55 @@
+use data;
+
+CREATE TABLE sales_data (
+    order_id INT PRIMARY KEY,
+    order_date DATE,
+    customer_name VARCHAR(100),
+    region VARCHAR(50),
+    category VARCHAR(50),
+    product_name VARCHAR(100),
+    sales DECIMAL(10,2),
+    profit DECIMAL(10,2)
+);
+
+INSERT INTO sales_data VALUES
+(1, '2024-01-02', 'Amit Sharma', 'West', 'Technology', 'Laptop', 75000, 12000),
+(2, '2024-01-05', 'Neha Verma', 'East', 'Furniture', 'Office Chair', 18000, 4000),
+(3, '2024-01-08', 'Rahul Patil', 'South', 'Office Supplies', 'Paper Pack', 6000, 900),
+(4, '2024-01-10', 'Anjali Mehta', 'North', 'Technology', 'Mobile Phone', 65000, 10000),
+(5, '2024-01-12', 'Akash Singh', 'West', 'Furniture', 'Table', 22000, 3500),
+(6, '2024-01-15', 'Aarti Kulkarni', 'South', 'Technology', 'Mouse', 3000, 500),
+(7, '2024-01-18', 'Suresh Rao', 'East', 'Office Supplies', 'Binder', 2000, 300),
+(8, '2024-01-20', 'Aman Khan', 'North', 'Technology', 'Tablet', 40000, 8000),
+(9, '2024-01-22', 'Pooja Desai', 'West', 'Furniture', 'Bookcase', 15000, 2500),
+(10,'2024-01-25', 'Arjun Nair', 'South', 'Office Supplies', 'Pens', 1200, 200);
+
+SELECT * FROM sales_data;
+
+SELECT COUNT(*) AS total_records FROM sales_data;
+
+SELECT category, SUM(sales) AS total_sales
+FROM sales_data
+GROUP BY category;
+
+
+SELECT *
+FROM sales_data
+WHERE category = 'Technology';
+
+SELECT *
+FROM sales_data
+WHERE customer_name LIKE 'A%';
+
+SELECT *
+FROM sales_data
+WHERE order_date BETWEEN '2024-01-01' AND '2024-01-31';
+
+SELECT customer_name, SUM(sales) AS total_spend
+FROM sales_data
+GROUP BY customer_name
+ORDER BY total_spend DESC
+LIMIT 5;
+
+SELECT category, SUM(sales) AS total_sales
+FROM sales_data
+GROUP BY category;
